@@ -1,0 +1,136 @@
+[gd_scene load_steps=7 format=3 uid="uid://dokux84nndu8v"]
+
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_4cf8r"]
+[ext_resource type="PackedScene" uid="uid://c8hq3cxspretf" path="res://scenes/ball.tscn" id="1_303oa"]
+[ext_resource type="PackedScene" uid="uid://ds3a5mop4joxd" path="res://scenes/paddle.tscn" id="1_tfjvl"]
+[ext_resource type="PackedScene" uid="uid://dvl6jtdrlnikf" path="res://scenes/brick.tscn" id="3_3x0y2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx7a5"]
+size = Vector2(10, 800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpbgv"]
+size = Vector2(1200, 10)
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_4cf8r")
+
+[node name="Paddle" parent="." instance=ExtResource("1_tfjvl")]
+position = Vector2(600, 780)
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Left Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(2.08165e-12, 400)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left Wall"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_tx7a5")
+
+[node name="ColorRect" type="ColorRect" parent="Walls/Left Wall"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -400.0
+offset_right = 5.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Top Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(600, 2.08165e-12)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top Wall"]
+shape = SubResource("RectangleShape2D_vpbgv")
+
+[node name="ColorRect" type="ColorRect" parent="Walls/Top Wall"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -5.0
+offset_right = 600.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Bottom Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(600, 800)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom Wall"]
+shape = SubResource("RectangleShape2D_vpbgv")
+
+[node name="ColorRect" type="ColorRect" parent="Walls/Bottom Wall"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -5.0
+offset_right = 600.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Right Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(1200, 400)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right Wall"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_tx7a5")
+
+[node name="ColorRect" type="ColorRect" parent="Walls/Right Wall"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -400.0
+offset_right = 5.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball" parent="." instance=ExtResource("1_303oa")]
+position = Vector2(100, 200)
+
+[node name="BG" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 1200.0
+offset_bottom = 800.0
+color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="Brick" parent="." instance=ExtResource("3_3x0y2")]
+position = Vector2(246, 260)
+
+[node name="Brick2" parent="." instance=ExtResource("3_3x0y2")]
+position = Vector2(366, 271)
+
+[node name="Brick3" parent="." instance=ExtResource("3_3x0y2")]
+position = Vector2(550, 268)
+
+[node name="Brick4" parent="." instance=ExtResource("3_3x0y2")]
+position = Vector2(761, 260)
+
+[node name="Brick5" parent="." instance=ExtResource("3_3x0y2")]
+position = Vector2(936, 256)
+
+[connection signal="score" from="Ball" to="." method="_on_scored"]
