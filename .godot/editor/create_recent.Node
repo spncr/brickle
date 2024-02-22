@@ -1,8 +1,0 @@
-Label
-Node
-ColorRect
-CollisionShape2D
-StaticBody2D
-CharacterBody2D
-ShapeCast2D
-Area2D
