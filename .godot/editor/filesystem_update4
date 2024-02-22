@@ -1,9 +1,8 @@
-res://board.tscn
 res://scenes/board.tscn
 res://scenes/ball.tscn
-res://scripts/ball.gd
 res://scenes/paddle.tscn
-res://scripts/paddle.gd
 res://scenes/brick.tscn
-res://scripts/brick.gd
 res://scripts/board.gd
+res://scripts/ball.gd
+res://scripts/paddle.gd
+res://scripts/brick.gd

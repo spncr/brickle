@@ -11,8 +11,9 @@ size = Vector2(10, 800)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpbgv"]
 size = Vector2(1200, 10)
 
-[node name="Board" type="Node2D"]
+[node name="Board" type="Node"]
 script = ExtResource("1_4cf8r")
+brick_scene = ExtResource("3_3x0y2")
 
 [node name="Paddle" parent="." instance=ExtResource("1_tfjvl")]
 position = Vector2(600, 780)
@@ -64,14 +65,16 @@ grow_vertical = 2
 color = Color(0, 1, 1, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Bottom Wall" type="StaticBody2D" parent="Walls"]
+[node name="Gutter" type="StaticBody2D" parent="Walls"]
 position = Vector2(600, 800)
+collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Gutter"]
 shape = SubResource("RectangleShape2D_vpbgv")
 
-[node name="ColorRect" type="ColorRect" parent="Walls/Bottom Wall"]
+[node name="ColorRect" type="ColorRect" parent="Walls/Gutter"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -110,7 +113,7 @@ color = Color(0, 1, 1, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Ball" parent="." instance=ExtResource("1_303oa")]
-position = Vector2(100, 200)
+position = Vector2(600, 600)
 
 [node name="BG" type="ColorRect" parent="."]
 z_index = -1
@@ -118,19 +121,14 @@ offset_right = 1200.0
 offset_bottom = 800.0
 color = Color(0.109804, 0.109804, 0.109804, 1)
 
-[node name="Brick" parent="." instance=ExtResource("3_3x0y2")]
-position = Vector2(246, 260)
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+offset_left = 321.0
+offset_top = 241.0
+offset_right = 996.0
+offset_bottom = 669.0
+text = "game over : score"
+horizontal_alignment = 1
 
-[node name="Brick2" parent="." instance=ExtResource("3_3x0y2")]
-position = Vector2(366, 271)
-
-[node name="Brick3" parent="." instance=ExtResource("3_3x0y2")]
-position = Vector2(550, 268)
-
-[node name="Brick4" parent="." instance=ExtResource("3_3x0y2")]
-position = Vector2(761, 260)
-
-[node name="Brick5" parent="." instance=ExtResource("3_3x0y2")]
-position = Vector2(936, 256)
-
+[connection signal="game_over" from="Ball" to="." method="_on_game_over"]
 [connection signal="score" from="Ball" to="." method="_on_scored"]

@@ -6,8 +6,8 @@
 
 [node name="Ball" type="CharacterBody2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
-collision_layer = 4
-collision_mask = 11
+collision_layer = 8
+collision_mask = 27
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_4ufj6")
